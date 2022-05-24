@@ -1,0 +1,52 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/python-3
+{
+	"name": "Transcriber Development",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": { 
+			// Update 'VARIANT' to pick a Python version: 3, 3.10, 3.9, 3.8, 3.7, 3.6
+			// Append -bullseye or -buster to pin to an OS version.
+			// Use -bullseye variants on local on arm64/Apple Silicon.
+			"VARIANT": "3.9",
+			// Options
+			"NODE_VERSION": "lts/*"
+		}
+	},
+	"settings": { 
+		"python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+		"python.linting.enabled": true,
+		//"python.linting.pylintEnabled": true,
+		"python.formatting.autopep8Path": "${workspaceFolder}/.venv/bin/autopep8",
+		"python.formatting.blackPath": "${workspaceFolder}/.venv/bin/black",
+		"python.formatting.yapfPath": "${workspaceFolder}/.venv/bin/yapf",
+		"python.formatting.provider": "black",
+		//"python.linting.banditPath": "${workspaceFolder}/.venv/bin/bandit",
+		//"python.linting.flake8Path": "${workspaceFolder}/.venv/bin/flake8",
+		//"python.linting.mypyPath": "${workspaceFolder}/.venv/bin/mypy",
+		//"python.linting.pycodestylePath": "${workspaceFolder}/.venv/bin/pycodestyle",
+		//"python.linting.pydocstylePath": "${workspaceFolder}/.venv/bin/pydocstyle",
+		//"python.linting.pylintPath": "${workspaceFolder}/.venv/bin/pylint",
+		"python.testing.pytestArgs": [
+			"tests"
+		],
+		"python.testing.unittestEnabled": false,
+		"python.testing.pytestEnabled": true
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"github.vscode-pull-request-github",
+		"github.copilot",
+		"github.copilot-labs",
+		"redhat.vscode-yaml",
+		"jebbs.plantuml"
+	],
+	"remoteUser": "vscode",
+	"features": {
+		"git": "os-provided",
+		"github-cli": "latest"
+	},
+	"postStartCommand": "poetry install --remove-untracked"
+}
